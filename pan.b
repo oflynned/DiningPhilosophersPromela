@@ -15,7 +15,7 @@
 		;
 		goto R999;
 
-		 /* PROC Phil_restart */
+		 /* PROC reset_philosopher */
 
 	case 6: // STATE 2
 		;
@@ -46,7 +46,7 @@
 		;
 		goto R999;
 
-		 /* PROC Philosopher */
+		 /* PROC philosopher */
 
 	case 11: // STATE 2
 		;

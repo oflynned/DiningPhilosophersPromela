@@ -1,7 +1,7 @@
 #ifndef PAN_H
 #define PAN_H
 
-#define SpinVersion	"Spin Version 6.4.2 -- 8 October 2014"
+#define SpinVersion	"Spin Version 6.4.5 -- 1 January 2016"
 #define PanSource	"lab4.pml"
 
 #define G_long	8
@@ -140,12 +140,12 @@ typedef struct S_F_MAP {
 #define maxseq3	53
 #define endstate3	11
 
-#define nstates2	20	/* Phil_restart */
+#define nstates2	20	/* reset_philosopher */
 #define minseq2	24
 #define maxseq2	42
 #define endstate2	19
 
-#define nstates1	14	/* Philosopher */
+#define nstates1	14	/* philosopher */
 #define minseq1	11
 #define maxseq1	23
 #define endstate1	13
@@ -191,8 +191,8 @@ typedef struct P3 { /* never_0 */
 } P3;
 #define Air3	(sizeof(P3) - 3)
 
-#define PPhil_restart	((P2 *)this)
-typedef struct P2 { /* Phil_restart */
+#define Preset_philosopher	((P2 *)this)
+typedef struct P2 { /* reset_philosopher */
 	unsigned _pid : 8;  /* 0..255 */
 	unsigned _t   : 4; /* proctype */
 	unsigned _p   : 6; /* state    */
@@ -203,8 +203,8 @@ typedef struct P2 { /* Phil_restart */
 } P2;
 #define Air2	(sizeof(P2) - Offsetof(P2, id) - 1*sizeof(uchar))
 
-#define PPhilosopher	((P1 *)this)
-typedef struct P1 { /* Philosopher */
+#define Pphilosopher	((P1 *)this)
+typedef struct P1 { /* philosopher */
 	unsigned _pid : 8;  /* 0..255 */
 	unsigned _t   : 4; /* proctype */
 	unsigned _p   : 6; /* state    */
@@ -512,6 +512,7 @@ int delproc(int, int);
 int endstate(void);
 int find_claim(char *);
 int h_store(char *, int);
+int pan_rand(void);
 int q_cond(short, Trans *);
 int q_full(int);
 int q_len(int);
@@ -531,6 +532,7 @@ void checkcycles(void);
 void crack(int, int, Trans *, short *);
 void d_sfh(uchar *, int);
 void d_hash(uchar *, int);
+void m_hash(uchar *, int);
 void s_hash(uchar *, int);
 void delq(int);
 void dot_crack(int, int, Trans *);
@@ -648,6 +650,12 @@ struct BFS_Trail {
 };
 	#if SYNC>0
 		#undef BFS_NOTRAIL
+	#endif
+#endif
+
+#ifdef RHASH
+	#ifndef PERMUTED
+	#define PERMUTED
 	#endif
 #endif
 

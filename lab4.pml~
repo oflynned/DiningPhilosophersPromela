@@ -1,4 +1,6 @@
+#ifndef N
 #define N 5
+#endif
 
 bit forks[N];
 byte count_eating;
@@ -8,16 +10,16 @@ init {
     byte i = 0;
     do
     ::(i < N-1) -> 
-    	run philosopher(i); 
+    	run Philosopher(i); 
     	i++;
     ::else -> 
-    	run reset_philosopher(i); 
+    	run Phil_restart(i); 
     	break;
     od;
   }
 }
 
-proctype philosopher(byte id) {
+proctype Philosopher(byte id) {
 thinking:
   atomic { 
   	forks[id] == 0; -> 
@@ -38,7 +40,7 @@ eating:
   goto thinking;
 }
 
-proctype reset_philosopher(byte id) {
+proctype Phil_restart(byte id) {
 thinking:
   atomic { 
   	forks[id] == 0; -> 

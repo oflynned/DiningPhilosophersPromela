@@ -43,7 +43,7 @@ settable(void)
 	trans[3][10]	= settr(52,0,11,1,0,".(goto)", 0, 2, 0);
 	trans[3][11]	= settr(53,0,0,5,5,"-end-", 0, 3500, 0);
 
-	/* proctype 2: Phil_restart */
+	/* proctype 2: reset_philosopher */
 
 	trans[2] = (Trans **) emalloc(20*sizeof(Trans *));
 
@@ -68,12 +68,12 @@ settable(void)
 	reached2[9] = 1;
 	trans[2][9]	= settr(0,0,0,0,0,"forks[id] = 0",0,0,0);
 	trans[2][11]	= settr(34,0,3,1,0,"goto thinking", 0, 2, 0);
-/*->*/	trans[2][16]	= settr(39,32,17,9,9,"D_STEP65", 1, 2, 0);
+/*->*/	trans[2][16]	= settr(39,32,17,9,9,"D_STEP63", 1, 2, 0);
 	trans[2][17]	= settr(40,0,3,10,10,"forks[id] = 0", 1, 2, 0);
 	trans[2][18]	= settr(41,0,3,1,0,"goto thinking", 0, 2, 0);
 	trans[2][19]	= settr(0,0,0,0,0,"-end-",0,0,0);
 
-	/* proctype 1: Philosopher */
+	/* proctype 1: philosopher */
 
 	trans[1] = (Trans **) emalloc(14*sizeof(Trans *));
 
@@ -88,7 +88,7 @@ settable(void)
 	reached1[5] = 1;
 	trans[1][5]	= settr(0,0,0,0,0,"forks[((id+1)%5)] = 1",0,0,0);
 	trans[1][6]	= settr(0,0,0,0,0,"count_eating = (count_eating+1)",0,0,0);
-/*->*/	trans[1][10]	= settr(20,32,11,13,13,"D_STEP35", 1, 2, 0);
+/*->*/	trans[1][10]	= settr(20,32,11,13,13,"D_STEP33", 1, 2, 0);
 	trans[1][11]	= settr(21,0,3,14,14,"forks[id] = 0", 1, 2, 0);
 	trans[1][12]	= settr(22,0,3,1,0,"goto thinking", 0, 2, 0);
 	trans[1][13]	= settr(0,0,0,0,0,"-end-",0,0,0);
@@ -104,10 +104,10 @@ settable(void)
 	T = T->nxt	= settr(6,2,1,0,0,"DO", 0, 2, 0);
 	    T->nxt	= settr(6,2,4,0,0,"DO", 0, 2, 0);
 	trans[0][1]	= settr(0,2,2,15,0,"((i<(5-1)))", 0, 2, 0);
-	trans[0][2]	= settr(1,2,3,16,16,"(run Philosopher(i))", 0, 2, 0);
+	trans[0][2]	= settr(1,2,3,16,16,"(run philosopher(i))", 0, 2, 0);
 	trans[0][3]	= settr(2,2,7,17,17,"i = (i+1)", 0, 2, 0);
 	trans[0][4]	= settr(3,2,5,2,0,"else", 0, 2, 0);
-	trans[0][5]	= settr(4,2,6,18,18,"(run Phil_restart(i))", 0, 2, 0);
+	trans[0][5]	= settr(4,2,6,18,18,"(run reset_philosopher(i))", 0, 2, 0);
 	trans[0][6]	= settr(5,2,9,1,0,"goto :b0", 0, 2, 0);
 	trans[0][9]	= settr(8,0,11,1,0,"break", 0, 2, 0);
 	trans[0][11]	= settr(10,0,0,19,19,"-end-", 0, 3500, 0);

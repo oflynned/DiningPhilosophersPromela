@@ -20,7 +20,7 @@
 		_m = 3; goto P999;
 
 		 /* CLAIM never_0 */
-	case 3: // STATE 1 - deadlock_resolution.live:8 - [(!((count_eating>0)))] (0:0:0 - 1)
+	case 3: // STATE 1 - deadlock_resolution.live:6 - [(!((count_eating>0)))] (0:0:0 - 1)
 		
 #if defined(VERI) && !defined(NP)
 #if NCLAIMS>1
@@ -46,7 +46,7 @@
 		if (!( !((((int)now.count_eating)>0))))
 			continue;
 		_m = 3; goto P999; /* 0 */
-	case 4: // STATE 7 - deadlock_resolution.live:13 - [(!((count_eating>0)))] (0:0:0 - 1)
+	case 4: // STATE 7 - deadlock_resolution.live:11 - [(!((count_eating>0)))] (0:0:0 - 1)
 		
 #if defined(VERI) && !defined(NP)
 #if NCLAIMS>1
@@ -72,7 +72,7 @@
 		if (!( !((((int)now.count_eating)>0))))
 			continue;
 		_m = 3; goto P999; /* 0 */
-	case 5: // STATE 11 - deadlock_resolution.live:15 - [-end-] (0:0:0 - 1)
+	case 5: // STATE 11 - deadlock_resolution.live:13 - [-end-] (0:0:0 - 1)
 		
 #if defined(VERI) && !defined(NP)
 #if NCLAIMS>1
@@ -98,8 +98,8 @@
 		if (!delproc(1, II)) continue;
 		_m = 3; goto P999; /* 0 */
 
-		 /* PROC Phil_restart */
-	case 6: // STATE 1 - lab4.pml:46 - [((forks[id]==0))] (12:0:1 - 1)
+		 /* PROC reset_philosopher */
+	case 6: // STATE 1 - lab4.pml:44 - [((forks[id]==0))] (12:0:1 - 1)
 		IfNotBlocked
 		reached[2][1] = 1;
 		if (!((((int)now.forks[ Index(((int)((P2 *)this)->id), 5) ])==0)))
@@ -109,11 +109,11 @@
 		(trpt+1)->bup.oval = ((int)now.forks[ Index(((int)((P2 *)this)->id), 5) ]);
 		now.forks[ Index(((P2 *)this)->id, 5) ] = 1;
 #ifdef VAR_RANGES
-		logval("forks[Phil_restart:id]", ((int)now.forks[ Index(((int)((P2 *)this)->id), 5) ]));
+		logval("forks[reset_philosopher:id]", ((int)now.forks[ Index(((int)((P2 *)this)->id), 5) ]));
 #endif
 		;
 		_m = 3; goto P999; /* 1 */
-	case 7: // STATE 4 - lab4.pml:53 - [((forks[((id+1)%5)]==0))] (16:0:2 - 1)
+	case 7: // STATE 4 - lab4.pml:51 - [((forks[((id+1)%5)]==0))] (16:0:2 - 1)
 		IfNotBlocked
 		reached[2][4] = 1;
 		if (!((((int)now.forks[ Index(((((int)((P2 *)this)->id)+1)%5), 5) ])==0)))
@@ -124,7 +124,7 @@
 		(trpt+1)->bup.ovals[0] = ((int)now.forks[ Index(((((int)((P2 *)this)->id)+1)%5), 5) ]);
 		now.forks[ Index(((((P2 *)this)->id+1)%5), 5) ] = 1;
 #ifdef VAR_RANGES
-		logval("forks[((Phil_restart:id+1)%5)]", ((int)now.forks[ Index(((((int)((P2 *)this)->id)+1)%5), 5) ]));
+		logval("forks[((reset_philosopher:id+1)%5)]", ((int)now.forks[ Index(((((int)((P2 *)this)->id)+1)%5), 5) ]));
 #endif
 		;
 		/* merge: count_eating = (count_eating+1)(16, 6, 16) */
@@ -139,7 +139,7 @@
 		reached[2][13] = 1;
 		;
 		_m = 3; goto P999; /* 3 */
-	case 8: // STATE 8 - lab4.pml:58 - [((forks[((id+1)%5)]!=0))] (3:0:1 - 1)
+	case 8: // STATE 8 - lab4.pml:56 - [((forks[((id+1)%5)]!=0))] (3:0:1 - 1)
 		IfNotBlocked
 		reached[2][8] = 1;
 		if (!((((int)now.forks[ Index(((((int)((P2 *)this)->id)+1)%5), 5) ])!=0)))
@@ -149,14 +149,14 @@
 		(trpt+1)->bup.oval = ((int)now.forks[ Index(((int)((P2 *)this)->id), 5) ]);
 		now.forks[ Index(((P2 *)this)->id, 5) ] = 0;
 #ifdef VAR_RANGES
-		logval("forks[Phil_restart:id]", ((int)now.forks[ Index(((int)((P2 *)this)->id), 5) ]));
+		logval("forks[reset_philosopher:id]", ((int)now.forks[ Index(((int)((P2 *)this)->id), 5) ]));
 #endif
 		;
 		/* merge: goto thinking(0, 11, 3) */
 		reached[2][11] = 1;
 		;
 		_m = 3; goto P999; /* 2 */
-	case 9: // STATE 16 - lab4.pml:65 - [D_STEP65]
+	case 9: // STATE 16 - lab4.pml:63 - [D_STEP63]
 		IfNotBlocked
 
 		reached[2][16] = 1;
@@ -175,7 +175,7 @@
 S_038_0: /* 2 */
 		now.forks[ Index(((((P2 *)this)->id+1)%5), 5) ] = 0;
 #ifdef VAR_RANGES
-		logval("forks[((Phil_restart:id+1)%5)]", ((int)now.forks[ Index(((((int)((P2 *)this)->id)+1)%5), 5) ]));
+		logval("forks[((reset_philosopher:id+1)%5)]", ((int)now.forks[ Index(((((int)((P2 *)this)->id)+1)%5), 5) ]));
 #endif
 		;
 		goto S_040_0;
@@ -186,19 +186,19 @@ S_040_0: /* 1 */
 #endif
 		_m = 3; goto P999;
 
-	case 10: // STATE 17 - lab4.pml:69 - [forks[id] = 0] (0:0:1 - 1)
+	case 10: // STATE 17 - lab4.pml:67 - [forks[id] = 0] (0:0:1 - 1)
 		IfNotBlocked
 		reached[2][17] = 1;
 		(trpt+1)->bup.oval = ((int)now.forks[ Index(((int)((P2 *)this)->id), 5) ]);
 		now.forks[ Index(((P2 *)this)->id, 5) ] = 0;
 #ifdef VAR_RANGES
-		logval("forks[Phil_restart:id]", ((int)now.forks[ Index(((int)((P2 *)this)->id), 5) ]));
+		logval("forks[reset_philosopher:id]", ((int)now.forks[ Index(((int)((P2 *)this)->id), 5) ]));
 #endif
 		;
 		_m = 3; goto P999; /* 0 */
 
-		 /* PROC Philosopher */
-	case 11: // STATE 1 - lab4.pml:25 - [((forks[id]==0))] (7:0:1 - 1)
+		 /* PROC philosopher */
+	case 11: // STATE 1 - lab4.pml:23 - [((forks[id]==0))] (7:0:1 - 1)
 		IfNotBlocked
 		reached[1][1] = 1;
 		if (!((((int)now.forks[ Index(((int)((P1 *)this)->id), 5) ])==0)))
@@ -208,11 +208,11 @@ S_040_0: /* 1 */
 		(trpt+1)->bup.oval = ((int)now.forks[ Index(((int)((P1 *)this)->id), 5) ]);
 		now.forks[ Index(((P1 *)this)->id, 5) ] = 1;
 #ifdef VAR_RANGES
-		logval("forks[Philosopher:id]", ((int)now.forks[ Index(((int)((P1 *)this)->id), 5) ]));
+		logval("forks[philosopher:id]", ((int)now.forks[ Index(((int)((P1 *)this)->id), 5) ]));
 #endif
 		;
 		_m = 3; goto P999; /* 1 */
-	case 12: // STATE 4 - lab4.pml:30 - [((forks[((id+1)%5)]==0))] (10:0:2 - 1)
+	case 12: // STATE 4 - lab4.pml:28 - [((forks[((id+1)%5)]==0))] (10:0:2 - 1)
 		IfNotBlocked
 		reached[1][4] = 1;
 		if (!((((int)now.forks[ Index(((((int)((P1 *)this)->id)+1)%5), 5) ])==0)))
@@ -223,7 +223,7 @@ S_040_0: /* 1 */
 		(trpt+1)->bup.ovals[0] = ((int)now.forks[ Index(((((int)((P1 *)this)->id)+1)%5), 5) ]);
 		now.forks[ Index(((((P1 *)this)->id+1)%5), 5) ] = 1;
 #ifdef VAR_RANGES
-		logval("forks[((Philosopher:id+1)%5)]", ((int)now.forks[ Index(((((int)((P1 *)this)->id)+1)%5), 5) ]));
+		logval("forks[((philosopher:id+1)%5)]", ((int)now.forks[ Index(((((int)((P1 *)this)->id)+1)%5), 5) ]));
 #endif
 		;
 		/* merge: count_eating = (count_eating+1)(10, 6, 10) */
@@ -235,7 +235,7 @@ S_040_0: /* 1 */
 #endif
 		;
 		_m = 3; goto P999; /* 2 */
-	case 13: // STATE 10 - lab4.pml:35 - [D_STEP35]
+	case 13: // STATE 10 - lab4.pml:33 - [D_STEP33]
 		IfNotBlocked
 
 		reached[1][10] = 1;
@@ -254,7 +254,7 @@ S_040_0: /* 1 */
 S_019_0: /* 2 */
 		now.forks[ Index(((((P1 *)this)->id+1)%5), 5) ] = 0;
 #ifdef VAR_RANGES
-		logval("forks[((Philosopher:id+1)%5)]", ((int)now.forks[ Index(((((int)((P1 *)this)->id)+1)%5), 5) ]));
+		logval("forks[((philosopher:id+1)%5)]", ((int)now.forks[ Index(((((int)((P1 *)this)->id)+1)%5), 5) ]));
 #endif
 		;
 		goto S_021_0;
@@ -265,31 +265,31 @@ S_021_0: /* 1 */
 #endif
 		_m = 3; goto P999;
 
-	case 14: // STATE 11 - lab4.pml:39 - [forks[id] = 0] (0:0:1 - 1)
+	case 14: // STATE 11 - lab4.pml:37 - [forks[id] = 0] (0:0:1 - 1)
 		IfNotBlocked
 		reached[1][11] = 1;
 		(trpt+1)->bup.oval = ((int)now.forks[ Index(((int)((P1 *)this)->id), 5) ]);
 		now.forks[ Index(((P1 *)this)->id, 5) ] = 0;
 #ifdef VAR_RANGES
-		logval("forks[Philosopher:id]", ((int)now.forks[ Index(((int)((P1 *)this)->id), 5) ]));
+		logval("forks[philosopher:id]", ((int)now.forks[ Index(((int)((P1 *)this)->id), 5) ]));
 #endif
 		;
 		_m = 3; goto P999; /* 0 */
 
 		 /* PROC :init: */
-	case 15: // STATE 1 - lab4.pml:12 - [((i<(5-1)))] (0:0:0 - 1)
+	case 15: // STATE 1 - lab4.pml:10 - [((i<(5-1)))] (0:0:0 - 1)
 		IfNotBlocked
 		reached[0][1] = 1;
 		if (!((((int)((P0 *)this)->_1_1_i)<(5-1))))
 			continue;
 		_m = 3; goto P999; /* 0 */
-	case 16: // STATE 2 - lab4.pml:13 - [(run Philosopher(i))] (0:0:0 - 1)
+	case 16: // STATE 2 - lab4.pml:11 - [(run philosopher(i))] (0:0:0 - 1)
 		IfNotBlocked
 		reached[0][2] = 1;
 		if (!(addproc(II, 1, 1, ((int)((P0 *)this)->_1_1_i))))
 			continue;
 		_m = 3; goto P999; /* 0 */
-	case 17: // STATE 3 - lab4.pml:14 - [i = (i+1)] (0:0:1 - 1)
+	case 17: // STATE 3 - lab4.pml:12 - [i = (i+1)] (0:0:1 - 1)
 		IfNotBlocked
 		reached[0][3] = 1;
 		(trpt+1)->bup.oval = ((int)((P0 *)this)->_1_1_i);
@@ -299,7 +299,7 @@ S_021_0: /* 1 */
 #endif
 		;
 		_m = 3; goto P999; /* 0 */
-	case 18: // STATE 5 - lab4.pml:16 - [(run Phil_restart(i))] (0:0:1 - 1)
+	case 18: // STATE 5 - lab4.pml:14 - [(run reset_philosopher(i))] (0:0:1 - 1)
 		IfNotBlocked
 		reached[0][5] = 1;
 		if (!(addproc(II, 1, 2, ((int)((P0 *)this)->_1_1_i))))
@@ -311,7 +311,7 @@ S_021_0: /* 1 */
 #endif
 			((P0 *)this)->_1_1_i = 0;
 		_m = 3; goto P999; /* 0 */
-	case 19: // STATE 11 - lab4.pml:20 - [-end-] (0:0:0 - 1)
+	case 19: // STATE 11 - lab4.pml:18 - [-end-] (0:0:0 - 1)
 		IfNotBlocked
 		reached[0][11] = 1;
 		if (!delproc(1, II)) continue;
